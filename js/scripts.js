@@ -1,21 +1,6 @@
 const pokemonRepository = (function () {
-  const pokemonList = [
-    {
-      name: "Caterpie",
-      height: 0.3,
-      types: ["bug"],
-    },
-    {
-      name: "Charmander",
-      height: 0.6,
-      types: ["fire"],
-    },
-    {
-      name: "Swinub",
-      height: 0.4,
-      types: ["ice", "ground"],
-    },
-  ];
+  const pokemonList = [];
+  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=15";
 
   function getAll() {
     return pokemonList;
@@ -30,17 +15,61 @@ const pokemonRepository = (function () {
 
   function filter(name) {
     return pokemonList.filter((pokemon) => {
-      return pokemon.name === name;
+      return pokemon.name.toLowerCase() === name.toLowerCase();
     });
   }
 
+  function loadList() {
+    return fetch(apiUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (json) {
+        json.results.forEach(function (item) {
+          let pokemon = {
+            name: item.name,
+            detailsUrl: item.url,
+          };
+          add(pokemon);
+        });
+      })
+      .catch(function (e) {
+        console.error(e);
+      });
+  }
+
+  function loadDetails(pokemon) {
+    return fetch(pokemon.detailsUrl)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        return data;
+      });
+  }
+
   function showDetails(pokemon) {
-    console.log(pokemon);
+    loadDetails(pokemon).then((pokemonDetails) => {
+      const { abilities, cries, sprites, height, types, order } =
+        pokemonDetails;
+      const pokemonCopy = {
+        ...pokemon,
+        abilities,
+        cries,
+        sprites,
+        height,
+        types,
+        order,
+      };
+      // console.log(pokemonDetails);
+      console.log(pokemonCopy);
+    });
   }
 
   function addListItem(pokemon) {
     let listItem = document.createElement("li");
     let button = document.createElement("button");
+    listItem.classList.add("page__pokemon-list-item");
     button.innerText = pokemon.name;
     button.classList.add("pokemon-button");
     addClickEventListener(button, pokemon);
@@ -59,10 +88,15 @@ const pokemonRepository = (function () {
     add: add,
     filter: filter,
     addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails,
   };
 })();
 
 const pokemonListNode = document.querySelector(".page__pokemon-list");
-pokemonRepository.getAll().forEach((pokemon) => {
-  pokemonRepository.addListItem(pokemon);
+
+pokemonRepository.loadList().then(() => {
+  pokemonRepository.getAll().forEach((pokemon) => {
+    pokemonRepository.addListItem(pokemon);
+  });
 });

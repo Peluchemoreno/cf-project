@@ -3,12 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/styles.css" />
     <title>Pokedex 2.0</title>
   </head>
   <body class="page">
     <h1 class="page__title">Pokedex</h1>
     <ul class="page__pokemon-list"></ul>
+    <div id="modal-container" class="isVisible">
+      <div class="modal">
+        <button class="modal__close">Close</button>
+        <div class="modal__card">
+          <div class="modal__header">
+            <p class="modal__sequence-number">#001</p>
+            <div class="modal__header--left">
+              <div class="modal__header-name-container">
+                <div class="modal__emoji">🔥</div>
+                <div class="modal__pokemon-details">
+                  <p>type</p>
+                  <h2>Pokemon Name</h2>
+                </div>
+              </div>
+              <section class="modal__header-details">
+                <div>
+                  <p>Height</p>
+                  <p>10</p>
+                </div>
+                <div>
+                  <p>Weight</p>
+                  <p>10</p>
+                </div>
+                <div>
+                  <p>Abilities</p>
+                  <p>Crush</p>
+                  <p>Swim</p>
+                </div>
+              </section>
+            </div>
+            <div class="modal__header--right">
+              <img
+                src="https://placehold.co/175x175"
+                alt="placeholder"
+                class="modal__sprite"
+              />
+            </div>
+          </div>
+          <div class="modal__body">
+            <h3 class="modal__height">0.3M</h3>
+            <h3 class="modal__ablilities">Abilities</h3>
+            <ul class="modal__abilitiy-list">
+              <li class="ability">hello</li>
+              <li class="ability">world</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="js/promise-polyfill.js"></script>
     <script src="js/fetch.umd.js"></script>
     <script src="js/scripts.js"></script>

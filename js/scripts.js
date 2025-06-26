@@ -1,6 +1,6 @@
 const pokemonRepository = (function () {
   const pokemonList = [];
-  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=35";
+  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=50";
   const modalContainer = document.getElementById("modal-container");
 
   const pokemonKey = {
@@ -153,24 +153,9 @@ const pokemonRepository = (function () {
     weightDiv.appendChild(weightLabel);
     weightDiv.appendChild(weightValue);
 
-    const abilitiesDiv = document.createElement("div");
-    const abilitiesLabel = document.createElement("p");
-    abilitiesLabel.textContent = "Abilities";
-    const ability1 = document.createElement("p");
-    ability1.textContent = capitalizeFirstLetter(pokemon.abilities[0]);
-
-    abilitiesDiv.appendChild(abilitiesLabel);
-    abilitiesDiv.appendChild(ability1);
-
-    if (pokemon.abilities[1]) {
-      const ability2 = document.createElement("p");
-      ability2.textContent = capitalizeFirstLetter(pokemon.abilities[1]);
-      abilitiesDiv.appendChild(ability2);
-    }
     // Append all the details to headerDetails section
     headerDetails.appendChild(heightDiv);
     headerDetails.appendChild(weightDiv);
-    headerDetails.appendChild(abilitiesDiv);
 
     // Create the right side of the header
     const headerRight = document.createElement("div");
@@ -198,10 +183,9 @@ const pokemonRepository = (function () {
     const modalBody = document.createElement("div");
     modalBody.classList.add("modal__body");
 
-    // Create height heading
-    const heightHeading = document.createElement("h3");
-    heightHeading.classList.add("modal__height");
-    heightHeading.textContent = "0.3M";
+    // Create the container for the abilities
+    const modalAbilities = document.createElement("div");
+    modalAbilities.classList.add("modal__ability-list");
 
     // Create abilities heading
     const abilitiesHeading = document.createElement("h3");
@@ -215,17 +199,77 @@ const pokemonRepository = (function () {
     // Create ability list items
     const abilityItem1 = document.createElement("li");
     abilityItem1.classList.add("ability");
-    abilityItem1.textContent = "hello";
-
-    const abilityItem2 = document.createElement("li");
-    abilityItem2.classList.add("ability");
-    abilityItem2.textContent = "world";
+    abilityItem1.textContent = capitalizeFirstLetter(pokemon.abilities[0]);
 
     // Append abilities to the list
+    abilityList.appendChild(abilityItem1);
+    if (pokemon.abilities[1]) {
+      const abilityItem2 = document.createElement("li");
+      abilityItem2.classList.add("ability");
+      abilityItem2.textContent = capitalizeFirstLetter(pokemon.abilities[1]);
+      abilityList.appendChild(abilityItem2);
+    }
+
+    // Compile and create stats section
+    const modalStatsTitle = document.createElement("h3");
+    modalStatsTitle.classList.add("modal__stats-title");
+    modalStatsTitle.textContent = "Stats";
+
+    const modalStatsSection = document.createElement("section");
+    modalStatsSection.classList.add("modal__stats");
+
+    const stats = [
+      "hp",
+      "attack",
+      "defense",
+      "special-attack",
+      "special-defense",
+      "speed",
+    ];
+
+    const displayNames = {
+      hp: "Hp",
+      attack: "Attack",
+      defense: "Defense",
+      "special-attack": "Special Attack",
+      "special-defense": "Special Defense",
+      speed: "Speed",
+    };
+
+    stats.forEach((stat) => {
+      const statDiv = document.createElement("div");
+      statDiv.className = "stat";
+
+      const label = document.createElement("p");
+      label.textContent = displayNames[stat];
+
+      const barContainer = document.createElement("div");
+      barContainer.className = "stat-bar";
+
+      const barInside = document.createElement("div");
+      barInside.className = "stat-bar__inside";
+      console.log(Math.floor((pokemon.stats[stat] * 100) / 255));
+      barInside.style.width = `${
+        Math.floor((pokemon.stats[stat] * 100) / 255) * 1.25
+      }%`;
+
+      barContainer.appendChild(barInside);
+
+      const value = document.createElement("p");
+      value.textContent = pokemon.stats[stat]; // Replace with actual value dynamically later
+
+      statDiv.appendChild(label);
+      statDiv.appendChild(barContainer);
+      statDiv.appendChild(value);
+
+      modalStatsSection.appendChild(statDiv);
+    });
 
     // Append everything to modal body
-    modalBody.appendChild(heightHeading);
     modalBody.appendChild(abilitiesHeading);
+    modalBody.appendChild(abilityList);
+    modalBody.appendChild(modalStatsTitle);
+    modalBody.appendChild(modalStatsSection);
 
     // Append header and body to the modal card
     modalCard.appendChild(modalHeader);

@@ -161,4 +161,64 @@ html {
 
 .modal__sprite {
   width: 180px;
+  position: relative;
+  z-index: 1000;
+}
+
+.modal__abilitiy-list {
+  list-style-type: none;
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.modal__stats{
+  margin-bottom: 10px;
+}
+
+.modal__stats-title {
+  margin: 10px 0;
+}
+
+.ability {
+  border: 1px solid white;
+  padding: 5px 10px;
+  background-color: rgba(255, 255, 255, .3);
+  border-radius: 5px;
+}
+
+.stat {
+  width: 100%;
+  display: flex;
+  gap: 5%;
+  margin-bottom: 10px;
+}
+
+.stat-bar {
+  flex-grow: 1;
+}
+
+.stat-bar__inside{
+  width: 50%;
+  height: 100%;
+  background-color: white;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 575px) {
+  .modal__sequence-number {
+    font-size: 80px;
+  }  
+
+  .modal__sprite {
+    width: 150px;
+  }
+
+  .modal__header-details {
+    font-size: .8rem;
+  }
+
+  .modal__header-name-container {
+    margin-bottom: 20px;
+  }
 }

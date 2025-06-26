@@ -54,7 +54,9 @@ html {
   height: 100%;
   z-index: 999;
   overflow: auto;
-  display: none;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
   align-items: center;
   justify-content: center;
   top: 0;
@@ -62,6 +64,7 @@ html {
   bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, .5);
+  transition: opacity .2s ease, visibility .2s ease;
 }
 
 #modal-container.isVisible {
@@ -70,6 +73,8 @@ html {
   z-index: 999;
   overflow: auto;
   display: flex;
+  visibility: visible;
+  opacity: 1;
   align-items: center;
   justify-content: center;
   top: 0;
@@ -89,6 +94,8 @@ html {
   max-width: 700px;
   text-align: left;
   position: relative;
+  border-radius: 5px;
+  border: 1px solid white;
 }
 
 .modal__close {
@@ -165,6 +172,11 @@ html {
   z-index: 1000;
 }
 
+.modal__pokemon-details {
+  position: relative;
+  z-index: 4;
+}
+
 .modal__abilitiy-list {
   list-style-type: none;
   display: flex;
@@ -214,7 +226,7 @@ html {
     width: 150px;
   }
 
-  .modal__header-details {
+  .modal__header-details > div > p:last-of-type, .stat > *, .ability {
     font-size: .8rem;
   }
 

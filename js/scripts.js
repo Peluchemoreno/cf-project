@@ -248,7 +248,6 @@ const pokemonRepository = (function () {
 
       const barInside = document.createElement("div");
       barInside.className = "stat-bar__inside";
-      console.log(Math.floor((pokemon.stats[stat] * 100) / 255));
       barInside.style.width = `${
         Math.floor((pokemon.stats[stat] * 100) / 255) * 1.25
       }%`;
@@ -290,7 +289,6 @@ const pokemonRepository = (function () {
     })`;
     modalContainer.appendChild(modal);
     modalContainer.classList.add("isVisible");
-    console.log(pokemon);
   }
 
   function hideModal() {
@@ -299,7 +297,6 @@ const pokemonRepository = (function () {
 
   function showDetails(pokemon) {
     loadDetails(pokemon).then((pokemonDetails) => {
-      console.log(pokemonDetails);
       const { abilities, cries, sprites, height, weight, types, order, stats } =
         pokemonDetails;
       // compile the types into an simple array

@@ -1,6 +1,6 @@
 const pokemonRepository = (function () {
   const pokemonList = [];
-  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=250";
+  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=500";
   const modalContainer = document.getElementById("pokemonModal");
   const searchInput = document.querySelector(".form__input");
   const searchForm = document.getElementById("searchForm");

@@ -3,16 +3,72 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/normalize.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link
+      href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAsIBMAJjd6wD///8AJQD6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREQAAEQAAABEBEBEBAAAAAAAAEQAAAAAAAAAAEAAAAAAiIgAQAAAAAiIgIgAAAAACAiAiAAAAAAICIAAAAAAABEQAAAAAAANENEREAAAAADNERERAAAAABEREREAAAAAAREREAAAAAAAAAAAAAAAAAAAAAAAADx5wAA4AMAAMADAADgBwAA+AcAAPAHAADgDwAA4AcAAOADAADAAwAAgAMAAMAHAADgBwAA8A8AAPgfAAD//wAA"
+      rel="icon"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="css/styles.css" />
     <title>Pokedex 2.0</title>
   </head>
-  <body class="page">
-    <h1 class="page__title">Pokedex</h1>
-    <ul class="page__pokemon-list"></ul>
-    <div id="modal-container"></div>
+  <body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#"
+        ><img
+          src="img/pokemon-23.svg"
+          alt="Pokemon Logo"
+          height="70px"
+          width="120px"
+      /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+        <form class="d-flex" id="searchForm" role="search">
+          <input
+            class="form-control me-2 form__input"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-light" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+    <div class="container">
+      <ul class="row list-group page__pokemon-list"></ul>
+    </div>
+    <div
+      id="pokemonModal"
+      class="modal fade"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="pokemonModal"
+      aria-hidden="true"
+    ></div>
     <script src="js/promise-polyfill.js"></script>
     <script src="js/fetch.umd.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+
     <script src="js/scripts.js"></script>
   </body>
 </html>

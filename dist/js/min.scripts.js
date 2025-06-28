@@ -23,19 +23,19 @@ const pokemonRepository = (function () {
         steel: { emoji: "\uD83D\uDEE0️", color: "#B8B8D0" },
         fairy: { emoji: "\uD83E\uDDDA", color: "#EE99AC" },
       };
-    function o(e) {
+    function n(e) {
       return [[e[0].toUpperCase()], [e.slice(1)]].join("");
     }
-    function n(e, t) {
+    function o(e, t) {
       e = e.replace(/^#/, "");
       let l = parseInt(e, 16),
         a = (l >> 16) & 255,
         i = (l >> 8) & 255,
-        o = 255 & l,
-        n = 1 - t / 100;
-      (a = Math.round(a * n)), (i = Math.round(i * n)), (o = Math.round(o * n));
+        n = 255 & l,
+        o = 1 - t / 100;
+      (a = Math.round(a * o)), (i = Math.round(i * o)), (n = Math.round(n * o));
       let d = (e) => e.toString(16).padStart(2, "0");
-      return `#${d(a)}${d(i)}${d(o)}`;
+      return `#${d(a)}${d(i)}${d(n)}`;
     }
     function d() {
       return e;
@@ -59,7 +59,7 @@ const pokemonRepository = (function () {
         "col-xl-auto"
       );
       let a = document.createElement("p");
-      (a.innerText = o(e.name)),
+      (a.innerText = n(e.name)),
         a.classList.add("pokemon__name"),
         l.appendChild(a),
         l.setAttribute("data-toggle", "modal"),
@@ -80,15 +80,15 @@ const pokemonRepository = (function () {
                   } = e,
                   u = [];
                 for (let C = 0; C < p.length; C++) u.push(p[C].type.name);
-                let f = {};
-                for (let g = 0; g < h.length; g++)
-                  f[h[g].stat.name] = h[g].base_stat;
+                let g = {};
+                for (let f = 0; f < h.length; f++)
+                  g[h[f].stat.name] = h[f].base_stat;
                 let E = [];
-                for (let $ = 0; $ < a.length; $++) E.push(a[$].ability.name);
+                for (let y = 0; y < a.length; y++) E.push(a[y].ability.name);
                 let L = {
                   ...l,
                   abilities: E,
-                  stats: f,
+                  stats: g,
                   cries: d,
                   sprites: s,
                   height: r,
@@ -122,43 +122,43 @@ const pokemonRepository = (function () {
                   u.classList.add("modal__pokemon-details");
                   let C = document.createElement("p");
                   C.textContent = l.types[0].toUpperCase();
-                  let f = document.createElement("h2");
-                  (f.textContent = o(l.name)),
+                  let g = document.createElement("h2");
+                  (g.textContent = n(l.name)),
                     u.appendChild(C),
-                    u.appendChild(f),
+                    u.appendChild(g),
                     m.appendChild(h),
                     m.appendChild(u);
-                  let g = document.createElement("section");
-                  g.classList.add("modal__header-details");
+                  let f = document.createElement("section");
+                  f.classList.add("modal__header-details");
                   let E = document.createElement("div"),
-                    $ = document.createElement("p");
-                  $.textContent = "Height";
+                    y = document.createElement("p");
+                  y.textContent = "Height";
                   let L = document.createElement("p");
                   (L.textContent =
                     parseFloat(0.1 * l.height).toFixed(1) + " Meters"),
-                    E.appendChild($),
+                    E.appendChild(y),
                     E.appendChild(L);
-                  let y = document.createElement("div"),
+                  let $ = document.createElement("div"),
                     b = document.createElement("p");
                   b.textContent = "Weight";
                   let k = document.createElement("p");
                   (k.textContent = (0.1 * l.weight).toFixed(1) + " Kg"),
-                    y.appendChild(b),
-                    y.appendChild(k),
-                    g.appendChild(E),
-                    g.appendChild(y);
-                  let j = document.createElement("div");
-                  j.classList.add("modal__header--right");
-                  let v = document.createElement("img");
-                  (v.src = l.sprites.other.home.front_default),
-                    (v.alt = "placeholder"),
-                    v.classList.add("modal__sprite"),
-                    j.appendChild(v),
+                    $.appendChild(b),
+                    $.appendChild(k),
+                    f.appendChild(E),
+                    f.appendChild($);
+                  let v = document.createElement("div");
+                  v.classList.add("modal__header--right");
+                  let j = document.createElement("img");
+                  (j.src = l.sprites.other.home.front_default),
+                    (j.alt = "placeholder"),
+                    j.classList.add("modal__sprite"),
+                    v.appendChild(j),
                     p.appendChild(m),
-                    p.appendChild(g),
+                    p.appendChild(f),
                     r.appendChild(c),
                     r.appendChild(p),
-                    r.appendChild(j);
+                    r.appendChild(v);
                   let A = document.createElement("div");
                   A.classList.add("modal__body");
                   let _ = document.createElement("div");
@@ -170,26 +170,40 @@ const pokemonRepository = (function () {
                   S.classList.add("modal__abilitiy-list"),
                     S.classList.add("list-group"),
                     S.classList.add("list-group-horizontal");
-                  let F = document.createElement("li");
+                  let w = document.createElement("li");
                   if (
-                    (F.classList.add("ability"),
-                    F.classList.add("list-group-item"),
-                    (F.textContent = o(l.abilities[0])),
-                    S.appendChild(F),
+                    (w.classList.add("ability"),
+                    w.classList.add("list-group-item"),
+                    (w.textContent = n(l.abilities[0])),
+                    S.appendChild(w),
                     l.abilities[1])
                   ) {
-                    let w = document.createElement("li");
-                    w.classList.add("ability"),
-                      w.classList.add("list-group-item"),
-                      (w.textContent = o(l.abilities[1])),
-                      S.appendChild(w);
+                    let F = document.createElement("li");
+                    F.classList.add("ability"),
+                      F.classList.add("list-group-item"),
+                      (F.textContent = n(l.abilities[1])),
+                      S.appendChild(F);
                   }
-                  let D = document.createElement("h3");
-                  D.classList.add("modal__stats-title"),
-                    (D.textContent = "Stats");
-                  let B = document.createElement("section");
-                  B.classList.add("modal__stats");
-                  let M = {
+                  let D = document.createElement("button");
+                  D.setAttribute("type", "button"),
+                    D.classList.add("modal__play-button");
+                  let B = new Audio(l.cries.latest);
+                  B.play(),
+                    D.addEventListener("click", () => {
+                      B.play();
+                    });
+                  let M = document.createElement("img");
+                  M.setAttribute("src", "./img/play.svg"),
+                    M.classList.add("modal__play-button-svg"),
+                    D.appendChild(M),
+                    S.appendChild(D),
+                    S.appendChild(D);
+                  let N = document.createElement("h3");
+                  N.classList.add("modal__stats-title"),
+                    (N.textContent = "Stats");
+                  let I = document.createElement("section");
+                  I.classList.add("modal__stats");
+                  let U = {
                     hp: "Hp",
                     attack: "Attack",
                     defense: "Defense",
@@ -208,55 +222,55 @@ const pokemonRepository = (function () {
                     let t = document.createElement("div");
                     t.className = "stat";
                     let a = document.createElement("p");
-                    a.textContent = M[e];
+                    a.textContent = U[e];
                     let i = document.createElement("div");
                     i.className = "stat-bar";
-                    let o = document.createElement("div");
-                    (o.className = "stat-bar__inside"),
-                      (o.style.backgroundColor = l.types.includes("electric")
+                    let n = document.createElement("div");
+                    (n.className = "stat-bar__inside"),
+                      (n.style.backgroundColor = l.types.includes("electric")
                         ? "#333"
                         : "#fff"),
-                      (o.style.width = `${
+                      (n.style.width = `${
                         1.25 * Math.floor((100 * l.stats[e]) / 255)
                       }%`),
-                      i.appendChild(o);
-                    let n = document.createElement("p");
-                    (n.textContent = l.stats[e]),
+                      i.appendChild(n);
+                    let o = document.createElement("p");
+                    (o.textContent = l.stats[e]),
                       t.appendChild(a),
                       t.appendChild(i),
-                      t.appendChild(n),
-                      B.appendChild(t);
+                      t.appendChild(o),
+                      I.appendChild(t);
                   }),
                     A.appendChild(x),
                     A.appendChild(S),
-                    A.appendChild(D),
-                    A.appendChild(B),
+                    A.appendChild(N),
+                    A.appendChild(I),
                     s.appendChild(r),
                     s.appendChild(A),
                     s.classList.add("modal-body");
-                  let N = document.createElement("div");
-                  N.classList.add("modal-header");
-                  let I = document.createElement("h3");
-                  I.classList.add("modal-title"), N.appendChild(I);
-                  let U = document.createElement("button");
-                  U.setAttribute("type", "button"),
-                    U.classList.add("btn-close"),
-                    U.setAttribute("data-bs-dismiss", "modal"),
-                    U.setAttribute("aria-label", "close"),
-                    N.appendChild(U),
-                    d.appendChild(N),
+                  let H = document.createElement("div");
+                  H.classList.add("modal-header");
+                  let R = document.createElement("h3");
+                  R.classList.add("modal-title"), H.appendChild(R);
+                  let q = document.createElement("button");
+                  q.setAttribute("type", "button"),
+                    q.classList.add("btn-close"),
+                    q.setAttribute("data-bs-dismiss", "modal"),
+                    q.setAttribute("aria-label", "close"),
+                    H.appendChild(q),
+                    d.appendChild(H),
                     d.appendChild(s),
                     (d.style.background = `linear-gradient(to top, ${
                       1 === l.types.length
-                        ? `${n(i[l.types[0]].color, 25)}, ${
+                        ? `${o(i[l.types[0]].color, 25)}, ${
                             i[l.types[0]].color
                           }`
                         : `${i[l.types[0]].color}, ${i[l.types[1]].color}`
                     })`),
                     a.appendChild(d),
                     t.appendChild(a);
-                  let H = new bootstrap.Modal(t);
-                  H.show();
+                  let T = new bootstrap.Modal(t);
+                  T.show();
                 })(L);
               });
             })(a);
@@ -264,22 +278,22 @@ const pokemonRepository = (function () {
         })(l, e),
         (function e(t, l) {
           let a = t.detailsUrl,
-            o = document.createElement("img");
+            n = document.createElement("img");
           return fetch(a)
             .then((e) => e.json())
             .then((e) => {
               (l.style.background = `linear-gradient(to right, ${
                 1 === e.types.length
-                  ? `${n(i[e.types[0].type.name].color, 25)} 50%, ${
+                  ? `${o(i[e.types[0].type.name].color, 25)} 50%, ${
                       i[e.types[0].type.name].color
                     } 50%`
                   : `${i[e.types[0].type.name].color} 50%, ${
                       i[e.types[1].type.name].color
                     } 50%`
               })`),
-                o.setAttribute("src", e.sprites.other.home.front_default),
-                o.classList.add("page__pokemon-image", "image-fluid"),
-                l.appendChild(o);
+                n.setAttribute("src", e.sprites.other.home.front_default),
+                n.classList.add("page__pokemon-image", "image-fluid"),
+                l.appendChild(n);
             });
         })(e, l),
         pokemonListNode.appendChild(l);
@@ -304,7 +318,7 @@ const pokemonRepository = (function () {
         },
         addListItem: c,
         loadList: function e() {
-          return fetch("https://pokeapi.co/api/v2/pokemon/?limit=500")
+          return fetch("https://pokeapi.co/api/v2/pokemon/?limit=50")
             .then(function (e) {
               return e.json();
             })

@@ -18,6 +18,7 @@ This is a single page Pokedex that fetches data from the Pokemon API
 
 - Uses IIFE to maintain control over the scope of the app and keep the interface isolated from the inner functions
 - Displays the first 250 pokemon and an accumulation of thier stats
+- Allows for filtering of pokemon by the search bar
 
 ## Usage
 

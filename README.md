@@ -1,6 +1,6 @@
-# Project Title
+# Pokédex
 
-Pokedex - Your one stop shop to find pokemon stats
+Pokédex - Your one stop shop to find pokemon stats
 
 ## Table of Contents
 

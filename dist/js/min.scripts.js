@@ -318,7 +318,7 @@ const pokemonRepository = (function () {
         },
         addListItem: c,
         loadList: function e() {
-          return fetch("https://pokeapi.co/api/v2/pokemon/?limit=50")
+          return fetch("https://pokeapi.co/api/v2/pokemon/?limit=500")
             .then(function (e) {
               return e.json();
             })

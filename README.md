@@ -17,7 +17,8 @@ This is a single page Pokedex that fetches data from the Pokemon API
 ## Features
 
 - Uses IIFE to maintain control over the scope of the app and keep the interface isolated from the inner functions
-- Displays the first 250 pokemon and an accumulation of thier stats
+- Displays the first 500 pokemon and an accumulation of thier stats
+- Plays the pokemon's cry upon opening
 - Allows for filtering of pokemon by the search bar
 
 ## Usage

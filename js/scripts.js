@@ -1,6 +1,6 @@
 const pokemonRepository = (function () {
   const pokemonList = [];
-  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=500";
+  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=50";
   const modalContainer = document.getElementById("pokemonModal");
   const searchInput = document.querySelector(".form__input");
   const searchForm = document.getElementById("searchForm");
@@ -232,6 +232,28 @@ const pokemonRepository = (function () {
       abilityItem2.textContent = capitalizeFirstLetter(pokemon.abilities[1]);
       abilityList.appendChild(abilityItem2);
     }
+
+    // create play button
+    const playButton = document.createElement("button");
+    playButton.setAttribute("type", "button");
+    playButton.classList.add("modal__play-button");
+
+    // create audio element and source element
+    const audio = new Audio(pokemon.cries.latest);
+    audio.play();
+
+    playButton.addEventListener("click", () => {
+      audio.play();
+    });
+
+    const playSvg = document.createElement("img");
+    playSvg.setAttribute("src", "./img/play.svg");
+    playSvg.classList.add("modal__play-button-svg");
+
+    playButton.appendChild(playSvg);
+    abilityList.appendChild(playButton);
+
+    abilityList.appendChild(playButton);
 
     // Compile and create stats section
     const modalStatsTitle = document.createElement("h3");
